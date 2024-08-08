@@ -30,6 +30,16 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Icon> scorekeeper = [
+    Icon(
+      Icons.check,
+      color: Colors.green,
+    ),
+    Icon(
+      Icons.close,
+      color: Colors.red,
+    )
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,7 +69,16 @@ class _QuizPageState extends State<QuizPage> {
               style: TextButton.styleFrom(
                 backgroundColor: Colors.green,
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  scorekeeper.add(Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ));
+                });
+
+                // print("user pressed true");
+              },
               icon: const Icon(Icons.check, size: 25, color: Colors.white),
               label: const Text(
                 'True',
@@ -75,7 +94,14 @@ class _QuizPageState extends State<QuizPage> {
               style: TextButton.styleFrom(
                 backgroundColor: Colors.red,
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  scorekeeper.add(Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ));
+                });
+              },
               icon: const Icon(
                 Icons.close,
                 size: 25,
@@ -88,7 +114,9 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: scorekeeper,
+        ),
       ],
     );
   }

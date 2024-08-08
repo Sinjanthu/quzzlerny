@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(Quizzler());
+void main() => runApp(const Quizzler());
 
 class Quizzler extends StatelessWidget {
+  const Quizzler({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
         body: SafeArea(
@@ -20,6 +23,8 @@ class Quizzler extends StatelessWidget {
 }
 
 class QuizPage extends StatefulWidget {
+  const QuizPage({super.key});
+
   @override
   _QuizPageState createState() => _QuizPageState();
 }
@@ -31,7 +36,7 @@ class _QuizPageState extends State<QuizPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Expanded(
+        const Expanded(
           flex: 5,
           child: Padding(
             padding: EdgeInsets.all(10.0),
@@ -50,37 +55,36 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              textColor: Colors.white,
-              color: Colors.green,
-              child: Text(
-                'True',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                ),
+            child: TextButton.icon(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.green,
               ),
-              onPressed: () {
-                //The user picked true.
-              },
+              onPressed: () {},
+              icon: const Icon(Icons.check, size: 25, color: Colors.white),
+              label: const Text(
+                'True',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
           ),
         ),
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
-            child: FlatButton(
-              color: Colors.red,
-              child: Text(
-                'False',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white,
-                ),
+            child: TextButton.icon(
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.red,
               ),
-              onPressed: () {
-                //The user picked false.
-              },
+              onPressed: () {},
+              icon: const Icon(
+                Icons.close,
+                size: 25,
+                color: Colors.white,
+              ),
+              label: const Text(
+                'False',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
             ),
           ),
         ),

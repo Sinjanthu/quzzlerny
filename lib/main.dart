@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/questions.dart';
 
 void main() => runApp(const Quizzler());
 
@@ -32,31 +33,12 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scorekeeper = [];
   int questionNumber = 0;
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.',
-    'The ocean is salty.',
-    'Penguins can fly.',
-    'The Earth is round.',
-    'Seeds grow into plants. ',
-    'All insects have six legs.',
-    'The sun is a giant ball of fire.',
-    'Apples grow on vines.',
-    'All butterflies are colorful.'
-  ];
-  List<bool> answers = [
-    false,
-    true,
-    true,
-    true,
-    false,
-    true,
-    true,
-    true,
-    true,
-    false,
-    true
+  List<Question> questionBank = [
+    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
+    Question(
+        q: 'Approximately one quarter of human bones are in the feet.',
+        a: true),
+    Question(q: 'A slug\'s blood is green.', a: true)
   ];
 
   @override
@@ -71,7 +53,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -89,22 +71,33 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.green,
               ),
               onPressed: () {
-                bool correctAnswer = answers[questionNumber];
+                bool correctAnswer =
+                    questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   setState(() {
-                    questionNumber++;
-                    scorekeeper.add(const Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ));
+                    if (questionNumber <= 8) {
+                      questionNumber++;
+                      scorekeeper.add(const Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ));
+                    } else {
+                      questionNumber = 0;
+                    }
+                    ;
                   });
                 } else {
                   setState(() {
-                    questionNumber++;
-                    scorekeeper.add(const Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ));
+                    if (questionNumber <= 8) {
+                      questionNumber++;
+                      scorekeeper.add(const Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ));
+                    } else {
+                      questionNumber = 0;
+                    }
+                    ;
                   });
                 }
                 ;
@@ -125,7 +118,9 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.red,
               ),
               onPressed: () {
-                bool correctAnswer = answers[questionNumber];
+                bool correctAnswer =
+                    questionBank[questionNumber].questionAnswer;
+
                 if (correctAnswer == false) {
                   setState(() {
                     questionNumber++;

@@ -41,6 +41,7 @@ class _QuizPageState extends State<QuizPage> {
     Question(q: 'A slug\'s blood is green.', a: true)
   ];
 
+  void wrongAnswer(bool userPickedAnswer) {}
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -75,7 +76,7 @@ class _QuizPageState extends State<QuizPage> {
                     questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   setState(() {
-                    if (questionNumber <= 8) {
+                    if (questionNumber <= 2) {
                       questionNumber++;
                       scorekeeper.add(const Icon(
                         Icons.check,
@@ -88,7 +89,7 @@ class _QuizPageState extends State<QuizPage> {
                   });
                 } else {
                   setState(() {
-                    if (questionNumber <= 8) {
+                    if (questionNumber <= 2) {
                       questionNumber++;
                       scorekeeper.add(const Icon(
                         Icons.close,

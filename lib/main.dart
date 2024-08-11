@@ -81,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
                     questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   setState(() {
-                    if (questionNumber <= 2) {
+                    if (questionNumber <= 7) {
                       questionNumber++;
                       scorekeeper.add(const Icon(
                         Icons.check,
@@ -94,7 +94,7 @@ class _QuizPageState extends State<QuizPage> {
                   });
                 } else {
                   setState(() {
-                    if (questionNumber <= 2) {
+                    if (questionNumber <= 7) {
                       questionNumber++;
                       scorekeeper.add(const Icon(
                         Icons.close,

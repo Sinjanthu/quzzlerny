@@ -47,6 +47,7 @@ class _QuizPageState extends State<QuizPage> {
   ];
 
   void wrongAnswer(bool userPickedAnswer) {}
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -56,12 +57,12 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           flex: 5,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
                 questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
                 ),
@@ -90,7 +91,6 @@ class _QuizPageState extends State<QuizPage> {
                     } else {
                       questionNumber = 0;
                     }
-                    ;
                   });
                 } else {
                   setState(() {
@@ -103,10 +103,8 @@ class _QuizPageState extends State<QuizPage> {
                     } else {
                       questionNumber = 0;
                     }
-                    ;
                   });
                 }
-                ;
               },
               icon: const Icon(Icons.check, size: 25, color: Colors.white),
               label: const Text(
@@ -144,7 +142,6 @@ class _QuizPageState extends State<QuizPage> {
                     ));
                   });
                 }
-                ;
               },
               icon: const Icon(
                 Icons.close,

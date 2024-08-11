@@ -39,9 +39,11 @@ class _QuizPageState extends State<QuizPage> {
         q: 'Approximately one quarter of human bones are in the feet.',
         a: true),
     Question(q: 'A slug\'s blood is green.', a: true),
-    Question(q: 'A slug\'s blood is red.', a: false),
-    Question(q: 'A slug\'s blood is thick.', a: true),
-    Question(q: 'A slug\'s blood is thin.', a: false)
+    Question(q: 'Penguins can fly.', a: false),
+    Question(q: 'The ocean is salty.', a: true),
+    Question(q: 'The Earth is round.', a: true),
+    Question(q: 'The sun is a giant ball of fire', a: true),
+    Question(q: 'Apples grow on vines.', a: false)
   ];
 
   void wrongAnswer(bool userPickedAnswer) {}

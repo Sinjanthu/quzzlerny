@@ -34,7 +34,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scorekeeper = [];
-  int questionNumber = 0;
 
   void wrongAnswer(bool userPickedAnswer) {}
 
@@ -50,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -68,31 +67,22 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.green,
               ),
               onPressed: () {
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.getQuestionAnswer();
                 if (correctAnswer == true) {
                   setState(() {
-                    if (questionNumber <= 7) {
-                      questionNumber++;
-                      scorekeeper.add(const Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ));
-                    } else {
-                      questionNumber = 0;
-                    }
+                    quizBrain.nextQuestion();
+                    scorekeeper.add(const Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ));
                   });
                 } else {
                   setState(() {
-                    if (questionNumber <= 7) {
-                      questionNumber++;
-                      scorekeeper.add(const Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ));
-                    } else {
-                      questionNumber = 0;
-                    }
+                    quizBrain.nextQuestion();
+                    scorekeeper.add(const Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ));
                   });
                 }
               },
@@ -112,12 +102,10 @@ class _QuizPageState extends State<QuizPage> {
                 backgroundColor: Colors.red,
               ),
               onPressed: () {
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
-
+                bool correctAnswer = quizBrain.getQuestionAnswer();
                 if (correctAnswer == false) {
                   setState(() {
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                     scorekeeper.add(const Icon(
                       Icons.check,
                       color: Colors.green,
@@ -125,7 +113,7 @@ class _QuizPageState extends State<QuizPage> {
                   });
                 } else {
                   setState(() {
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                     scorekeeper.add(const Icon(
                       Icons.close,
                       color: Colors.red,

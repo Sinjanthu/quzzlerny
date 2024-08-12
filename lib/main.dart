@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/questions.dart';
+import 'package:untitled/quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(const Quizzler());
 
@@ -33,18 +35,6 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scorekeeper = [];
   int questionNumber = 0;
-  List<Question> questionBank = [
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
-    Question(
-        q: 'Approximately one quarter of human bones are in the feet.',
-        a: true),
-    Question(q: 'A slug\'s blood is green.', a: true),
-    Question(q: 'Penguins can fly.', a: false),
-    Question(q: 'The ocean is salty.', a: true),
-    Question(q: 'The Earth is round.', a: true),
-    Question(q: 'The sun is a giant ball of fire', a: true),
-    Question(q: 'Apples grow on vines.', a: false)
-  ];
 
   void wrongAnswer(bool userPickedAnswer) {}
 
@@ -60,7 +50,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionNumber].questionText,
+                quizBrain.questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -79,7 +69,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 bool correctAnswer =
-                    questionBank[questionNumber].questionAnswer;
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   setState(() {
                     if (questionNumber <= 7) {
@@ -123,7 +113,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 bool correctAnswer =
-                    questionBank[questionNumber].questionAnswer;
+                    quizBrain.questionBank[questionNumber].questionAnswer;
 
                 if (correctAnswer == false) {
                   setState(() {

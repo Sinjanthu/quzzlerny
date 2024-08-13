@@ -44,15 +44,15 @@ class _QuizPageState extends State<QuizPage> {
           context: context,
           type: AlertType.error,
           title: "Finished!",
-          desc: "You\'ve reached the end of the quiz.",
+          desc: "You've reached the end of the quiz.",
           buttons: [
             DialogButton(
-              child: Text(
+              onPressed: () => Navigator.pop(context),
+              width: 120,
+              child: const Text(
                 "Cancel.",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
-              onPressed: () => Navigator.pop(context),
-              width: 120,
             )
           ],
         ).show();
